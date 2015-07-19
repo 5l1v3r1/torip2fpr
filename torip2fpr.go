@@ -32,9 +32,9 @@ func loadAddresses(fileName string) {
 	for scanner.Scan() {
 		line := scanner.Text()
 
-		separated := strings.Split(line, ":")
+		separated := strings.SplitN(line, ":", 2)
 		identifier := separated[0]
-		ipAddrs := strings.Split(strings.Join(separated[1:], ""), ",")
+		ipAddrs := strings.Split(separated[1], ",")
 
 		for _, ipAddr := range ipAddrs {
 			ipAddr = strings.TrimSpace(ipAddr)
