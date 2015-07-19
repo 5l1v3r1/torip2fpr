@@ -84,6 +84,10 @@ func runExtraction(dataDir, ipAddrFile string) {
 
 	idx := 0
 	walkFiles := func(path string, info os.FileInfo, err error) error {
+		if _, err := os.Stat(path); err != nil {
+			log.Fatalf("File %s does not exist.\n", path)
+			return nil
+		}
 		if info.IsDir() {
 			return nil
 		}
